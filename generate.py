@@ -6,11 +6,13 @@ import argparse
 
 outputdir = "output/"
 
-parser = argparse.ArgumentParser(description="Imperfect Fifth, v0.1.", epilog="This generates a set of pitch-shifted sample files, based on an input file.")
-parser.add_argument("-i", "--input",      metavar="FILE.WAV",       help="Input file.", default="default.wav")
-parser.add_argument("-b", "--basenote",      metavar="A4",       help="Note to parse input file as (A4, C#6, Db1, etc). If you make this low, the generated files will be higher; if you make this high, the generated files will be lower. Highest is B8 (7902Hz) and lowest is A0 (27.5Hz). Default is A4 (440Hz).", default="A4")
-parser.add_argument("-o", "--output", metavar="s", help="Output naming scheme. Options are \"n\" (name of note: \"A4\"), \"k\" (key number: \"49.wav\"), \"s\" (note but sortable: \"49-A4\"), and \"m\" (MIDI note: \"69\"). Default is \"s\".", default="s")
-parser.add_argument("-p,", "--prefix", metavar="\"impfif\"", help="Output prefix, to put before file names when they're being saved. Use quotation marks around it.")
+parser = argparse.ArgumentParser(description="Imperfect Fifth, v1.0", epilog="This generates a set of pitch-shifted sample files, based on an input file.")
+# parser.add_argument("-h", "--help",							help="Print this message and exit.")
+parser.add_argument("-i", "--input",	metavar="FILE.WAV",	help="Input file; default is \"input.wav\".", default="input.wav")
+parser.add_argument("-b", "--basenote",	metavar="A4",		help="Note to parse input file as (A4, C#6, Db1, etc). If you make this low, the generated files will be higher; if you make this high, the generated files will be lower. Highest is B8 (7902Hz) and lowest is A0 (27.5Hz). Default is A4 (440Hz).", default="A4")
+parser.add_argument("-o", "--output", 	metavar="s",		help="Output naming scheme. Options are \"n\" (name of note: \"A4\"), \"k\" (key number: \"49.wav\"), \"s\" (note but sortable: \"49-A4\"), and \"m\" (MIDI note: \"69\"). Default is \"s\".", default="s")
+parser.add_argument("-p", "--prefix",	metavar="\"impf\"", help="(optional) Output prefix, to put before file names when they're being saved. Use quotation marks around it.", default="")
+
 
 args = parser.parse_args()
 
@@ -39,6 +41,23 @@ replaces = [
 
 for a in replaces:
 	base = base.replace(a[0], a[1])
+
+#print(inp)
+#print(base)
+#print(out)
+#print(pre)
+
+os.system("mkdir input > /dev/null 2>&1")
+os.system("mkdir output > /dev/null 2>&1")
+# Make sure that ./input and ./output exist.
+# But we don't need to hear about it, so we
+# pipe the output of this to /dev/null.
+
+if not os.path.isfile(inp):
+    print(f"Error: The input file '{inp}' does not exist.")
+    print(f"")
+    parser.print_help()
+    exit()
 
 print("Running with input file \"" + inp + "\", base note \"" + base + "\", output format \"" + out + "\", and output prefix \"" + pre + "\". Wowzies!" )
 
