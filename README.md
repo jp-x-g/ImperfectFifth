@@ -3,6 +3,10 @@ This is a cute little program that takes an audio file (.WAV only) and uses it a
 It's not very sophisticated, and the lower/higher ends might sound very weird, but it is good enough to be usable.<br />
 At the very least, it is good for memeing around.
 
+This requires that the ```sox``` package be installed.
+
+I use Linux; I don't know what happens if you run this program on a closed-sores OS. It probably won't work very well.
+
 Usage: ```generate.py [-h] [-i FILE.WAV] [-b A4] [-o s] [-p "prefix"]```
 
 Optional arguments:
