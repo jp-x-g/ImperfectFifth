@@ -1,3 +1,4 @@
+![Software logo](logo-imperfectfifth.png)
 # Imperfect Fifth, v1.0
 This is a cute little program that takes an audio file (.WAV only) and uses it as a basis for generating a full set of 88 notes.<br />
 It's not very sophisticated, and the lower/higher ends might sound very weird, but it is good enough to be usable.<br />
